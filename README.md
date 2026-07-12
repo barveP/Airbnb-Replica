@@ -58,8 +58,6 @@ flowchart LR
 
 REST routes and GraphQL resolvers share the same service layer. PostgreSQL is the source of truth, while Redis stores short-lived copies of repeated property searches. Property and reservation writes increment a cache version so stale availability is never returned.
 
-See [PROJECT_WALKTHROUGH.md](PROJECT_WALKTHROUGH.md) for the data model, API contracts, request flows, caching design, reservation concurrency strategy, and engineering tradeoffs.
-
 ## Run locally
 
 ### Prerequisite
@@ -156,5 +154,4 @@ frontend/
   src/api.js              REST client
 e2e/                      Playwright browser tests
 docker-compose.yml        Complete local runtime
-PROJECT_WALKTHROUGH.md    Detailed system design and behavior
 ```
