@@ -1,0 +1,22 @@
+{
+  "name": "stayfinder-airbnb-prototype",
+  "private": true,
+  "workspaces": ["backend", "frontend"],
+  "scripts": {
+    "infra": "docker compose up -d --wait postgres redis",
+    "infra:down": "docker compose down",
+    "setup": "npm run infra && npm run db:setup -w backend",
+    "dev": "concurrently -n API,WEB -c blue,magenta \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w frontend",
+    "test": "npm run test -w backend && npm run test -w frontend",
+    "test:e2e": "playwright test",
+    "benchmark": "npm run benchmark -w backend",
+    "verify": "npm run setup && npm test && npm run build",
+    "verify:all": "npm run verify && npm run test:e2e && npm run benchmark",
+    "start": "docker compose up --build"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "concurrently": "^9.2.0"
+  }
+}
